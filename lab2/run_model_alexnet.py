@@ -143,8 +143,9 @@ preprocess = transforms.Compose([
     transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))])
 
 # Download CIFAR-10 and split into training, validation, and test sets
+datapath = "../../data"
 
-train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True,
+train_dataset = torchvision.datasets.CIFAR10(root=datapath, train=True,
                                              download=True, transform=preprocess)
 
 # Split the training set into training and validation sets randomly.
@@ -155,7 +156,7 @@ train_dataset, val_dataset = torch.utils.data.random_split(train_dataset, [40000
 # Download the test set. If you use data augmentation transforms for the training set,
 # you'll want to use a different transformer here.
 
-test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False,
+test_dataset = torchvision.datasets.CIFAR10(root=datapath, train=False,
                                             download=True, transform=preprocess)
 
 # Dataset objects are mainly designed for datasets that can't fit entirely into memory.
