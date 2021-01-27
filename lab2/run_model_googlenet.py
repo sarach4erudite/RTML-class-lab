@@ -179,7 +179,7 @@ test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=4,
                                               shuffle=False, num_workers=2)
 
 
-device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
 print('Using device', device)
 
 import pandas as pd
@@ -197,7 +197,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(params_to_update, lr=0.001, momentum=0.9)
 
 total_params = sum(p.numel() for p in google_net1.parameters())
-google_net1, val_acc_history, loss_acc_history, time_elapsed = train_model(google_net1, dataloaders, criterion, optimizer, 10, 'alex_sequential_lr_0.001_bestsofar')
+google_net1, val_acc_history, loss_acc_history, time_elapsed = train_model(google_net1, dataloaders, criterion, optimizer, 10, 'best-googlenet-scratch', is_inception=True)
 
 val_acc = np.max(val_acc_history)
 df = df.append(dict(
@@ -218,7 +218,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(params_to_update, lr=0.001, momentum=0.9)
 
 total_params = sum(p.numel() for p in google_net2.parameters())
-google_net2, val_acc_history, loss_acc_history, time_elapsed = train_model(google_net2, dataloaders, criterion, optimizer, 10, 'alex_sequential_lr_0.001_bestsofar')
+google_net2, val_acc_history, loss_acc_history, time_elapsed = train_model(google_net2, dataloaders, criterion, optimizer, 10, 'best-googlenet-pretained', is_inception=True)
 
 val_acc = np.max(val_acc_history)
 df = df.append(dict(
