@@ -1,4 +1,4 @@
-from ResNetModels import ResNet18
+from ResnetModels import ResNet18
 from trainer import train_model
 
 import os
