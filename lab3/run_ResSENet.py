@@ -13,7 +13,7 @@ from copy import deepcopy
 
 # Set device to GPU or CPU
 
-device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
 
 # Allow augmentation transform for training set, no augementation for val/test set
 
@@ -45,7 +45,7 @@ test_dataset = torchvision.datasets.CIFAR10(root='../../data', train=False,
 # DataLoaders for the three datasets
 
 BATCH_SIZE=128
-NUM_WORKERS=1
+NUM_WORKERS=0
 
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE,
                                             shuffle=True, num_workers=NUM_WORKERS)
@@ -77,6 +77,6 @@ df = df.append({
     'Running Time' : time_elapsed,
     'val_acc_history' : val_acc_history2,
     'loss_acc_history' : loss_acc_history2, 
-})
+}, ignore_index=True)
 
 df.to_csv('model_results.csv', index=False)
