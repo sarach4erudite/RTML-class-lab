@@ -15,11 +15,21 @@ device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 # Allow augmentation transform for training set, no augementation for val/test set
 
 train_preprocess = transforms.Compose([
-    transforms.RandomHorizontalFlip(),
+    # transforms.RandomHorizontalFlip(),
+    
+    # Switch to 256x256 scaling and 224x224 cropping 
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 eval_preprocess = transforms.Compose([
+    
+    # Switch to 256x256 scaling and 224x224 cropping 
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
