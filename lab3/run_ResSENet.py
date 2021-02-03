@@ -45,7 +45,7 @@ test_dataset = torchvision.datasets.CIFAR10(root='../../data', train=False,
 # DataLoaders for the three datasets
 
 BATCH_SIZE=128
-NUM_WORKERS=1
+NUM_WORKERS=0
 
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE,
                                             shuffle=True, num_workers=NUM_WORKERS)
