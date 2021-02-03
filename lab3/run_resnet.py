@@ -87,6 +87,6 @@ df = df.append({
     'Running Time' : time_elapsed,
     'val_acc_history' : val_acc_history,
     'loss_acc_history' : loss_acc_history, 
-})
+}, ignore_index=True)
 
 df.to_csv('model_results.csv', index=False)
