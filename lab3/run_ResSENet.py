@@ -8,6 +8,9 @@ from torchvision import datasets, models, transforms
 import torch.nn as nn
 import torch.optim as optim
 
+from copy import copy
+from copy import deepcopy
+
 # Set device to GPU or CPU
 
 device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
@@ -28,7 +31,7 @@ eval_preprocess = transforms.Compose([
 # the same training/validation split of the original training set but
 # apply different transforms to the training set and validation set.
 
-full_train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True,
+full_train_dataset = torchvision.datasets.CIFAR10(root='../../data', train=True,
                                                   download=True)
 
 train_dataset, val_dataset = torch.utils.data.random_split(full_train_dataset, [40000, 10000])
@@ -36,7 +39,7 @@ train_dataset.dataset = copy(full_train_dataset)
 train_dataset.dataset.transform = train_preprocess
 val_dataset.dataset.transform = eval_preprocess
 
-test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False,
+test_dataset = torchvision.datasets.CIFAR10(root='../../data', train=False,
                                             download=True, transform=eval_preprocess)
 
 # DataLoaders for the three datasets
